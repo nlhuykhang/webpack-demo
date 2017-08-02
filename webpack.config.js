@@ -26,9 +26,13 @@ module.exports = {
       title: 'what is this title for',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    // new webpack.optimize.CommonsChunkPlugin({
+    //    name: 'common'
+    //  })
   ],
   output: {
     filename: '[name].bundle.js',
+    chunkFilename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
 };

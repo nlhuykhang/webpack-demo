@@ -1,5 +1,5 @@
-import _ from 'lodash';
-import printMe from './print.js';
+import { join } from 'lodash';
+// import printMe from './print.js';
 import test from './test.js';
 import './style.css';
 
@@ -8,10 +8,10 @@ function component() {
   var btn = document.createElement('button');
 
   // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+  element.innerHTML = join(['Hello', 'webpack'], ' ');
 
   btn.innerHTML = 'click here you motherfucker';
-  btn.onclick = printMe;
+  btn.onclick = e => import(/* webpackChunkName: "print" */ './print.js').then(module => module.default());
 
   element.appendChild(btn);
 
