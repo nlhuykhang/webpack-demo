@@ -4,9 +4,7 @@ import { join } from 'lodash';
 import './style.css';
 
 function component() {
-  // setTimeout(function() {
-    import(/* webpackChunkName: "test" */ './test.js').then(module => module.default(123));
-  // }, 10000);
+  import(/* webpackChunkName: "test" */ './test.js').then(module => module.default(123));
 
   var element = document.createElement('div');
   var btn = document.createElement('button');
