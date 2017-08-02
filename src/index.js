@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import printMe from './print.js';
+import test from './test.js';
+import './style.css';
 
 function component() {
   var element = document.createElement('div');
@@ -16,4 +18,15 @@ function component() {
   return element;
 }
 
-document.body.appendChild(component());
+let element = component();
+document.body.appendChild(element);
+
+if (module.hot) {
+  module.hot.accept('./print.js', function() {
+    console.log('accepting the updated print module');
+
+    document.body.removeChild(element);
+    element = component();
+    document.body.appendChild(element);
+  });
+}
