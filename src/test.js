@@ -1,3 +1,3 @@
-export default function test() {
-  console.log('test 23');
+export default function test(qw) {
+  console.log('test 232121 wekljrlewj ', qw);
 }

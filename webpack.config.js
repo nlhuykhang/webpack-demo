@@ -7,10 +7,15 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
-    hot: true,
+    // hot: true,
   },
   entry: {
     app: './src/index.js',
+    vendor: [
+      'lodash',
+      // './src/test.js',
+    ],
+    // test: './src/test.js',
   },
   module: {
     rules: [
@@ -21,18 +26,23 @@ module.exports = {
     ],
   },
   plugins: [
-    // new CleanWebpackPlugin(['dist']),
+    new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
       title: 'what is this title for',
     }),
-    new webpack.HotModuleReplacementPlugin(),
-    // new webpack.optimize.CommonsChunkPlugin({
-    //    name: 'common'
-    //  })
+    // new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor'
+    }),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'runtime'
+    }),
   ],
   output: {
-    filename: '[name].bundle.js',
-    chunkFilename: '[name].bundle.js',
+    // caching
+    filename: '[name].[chunkhash].js',
+    chunkFilename: '[name].[chunkhash].js',
     path: path.resolve(__dirname, 'dist'),
   },
 };
